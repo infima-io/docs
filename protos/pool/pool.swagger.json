@@ -1,0 +1,677 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "pool.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/distributions": {
+      "get": {
+        "operationId": "PoolService_GetDistributions",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/poolPoolDistributions"
+                },
+                "error": {
+                  "$ref": "#/definitions/runtimeStreamError"
+                }
+              },
+              "title": "Stream result of poolPoolDistributions"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "CUSIPS",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "PoolService"
+        ]
+      }
+    },
+    "/geos": {
+      "get": {
+        "operationId": "PoolService_GetGeolocations",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/poolPoolGeo"
+                },
+                "error": {
+                  "$ref": "#/definitions/runtimeStreamError"
+                }
+              },
+              "title": "Stream result of poolPoolGeo"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "CUSIPS",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "PoolService"
+        ]
+      }
+    },
+    "/info": {
+      "get": {
+        "operationId": "PoolService_Info",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/buildInfo"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "PoolService"
+        ]
+      }
+    },
+    "/pools": {
+      "get": {
+        "operationId": "PoolService_Find",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/poolPool"
+                },
+                "error": {
+                  "$ref": "#/definitions/runtimeStreamError"
+                }
+              },
+              "title": "Stream result of poolPool"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "CUSIPS",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "agency",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "NULL_AGENCY",
+              "FNM",
+              "FHL",
+              "GNM"
+            ],
+            "default": "NULL_AGENCY"
+          },
+          {
+            "name": "coupon_type",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "NULL_COUPON_TYPE",
+              "FIX",
+              "ARM",
+              "VAR"
+            ],
+            "default": "NULL_COUPON_TYPE"
+          },
+          {
+            "name": "current",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
+          },
+          {
+            "name": "eligible_TBA_only",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
+          },
+          {
+            "name": "standard_coupon_only",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
+          },
+          {
+            "name": "year_originated_after",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "PoolService"
+        ]
+      }
+    },
+    "/quartiles": {
+      "get": {
+        "operationId": "PoolService_GetQuartiles",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/poolPoolQuartiles"
+                },
+                "error": {
+                  "$ref": "#/definitions/runtimeStreamError"
+                }
+              },
+              "title": "Stream result of poolPoolQuartiles"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "CUSIPS",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "PoolService"
+        ]
+      }
+    },
+    "/servicers": {
+      "get": {
+        "operationId": "PoolService_GetServicers",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/poolPoolServicers"
+                },
+                "error": {
+                  "$ref": "#/definitions/runtimeStreamError"
+                }
+              },
+              "title": "Stream result of poolPoolServicers"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "CUSIPS",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "PoolService"
+        ]
+      }
+    },
+    "/summaries": {
+      "get": {
+        "operationId": "PoolService_GetSummaries",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/poolPoolSummary"
+                },
+                "error": {
+                  "$ref": "#/definitions/runtimeStreamError"
+                }
+              },
+              "title": "Stream result of poolPoolSummary"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "CUSIPS",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "PoolService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "buildInfo": {
+      "type": "object",
+      "properties": {
+        "binary": {
+          "type": "string"
+        },
+        "sem_version": {
+          "type": "string"
+        },
+        "build_on": {
+          "type": "string"
+        },
+        "git_hash": {
+          "type": "string"
+        },
+        "git_commit": {
+          "type": "string"
+        }
+      }
+    },
+    "dateDate": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "month": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "lifecycleLifecycle": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "poolAgency": {
+      "type": "string",
+      "enum": [
+        "NULL_AGENCY",
+        "FNM",
+        "FHL",
+        "GNM"
+      ],
+      "default": "NULL_AGENCY"
+    },
+    "poolAllocation": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "percentage_RPB": {
+          "type": "number",
+          "format": "float"
+        },
+        "RPB": {
+          "type": "number",
+          "format": "float"
+        },
+        "loans": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "poolCouponType": {
+      "type": "string",
+      "enum": [
+        "NULL_COUPON_TYPE",
+        "FIX",
+        "ARM",
+        "VAR"
+      ],
+      "default": "NULL_COUPON_TYPE"
+    },
+    "poolLoanPurpose": {
+      "type": "object",
+      "properties": {
+        "percentage_purchase": {
+          "type": "number",
+          "format": "float"
+        },
+        "percentage_ReFi": {
+          "type": "number",
+          "format": "float"
+        },
+        "percentage_owner": {
+          "type": "number",
+          "format": "float"
+        },
+        "percentage_2ndHome": {
+          "type": "number",
+          "format": "float"
+        },
+        "percentage_investor": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "poolPool": {
+      "type": "object",
+      "properties": {
+        "lifecycle": {
+          "$ref": "#/definitions/lifecycleLifecycle"
+        },
+        "CUSIP": {
+          "type": "string"
+        },
+        "product": {
+          "type": "string"
+        },
+        "agency": {
+          "$ref": "#/definitions/poolAgency"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "agency_ticker": {
+          "type": "string"
+        },
+        "coupon_type": {
+          "$ref": "#/definitions/poolCouponType"
+        },
+        "issue_date": {
+          "$ref": "#/definitions/dateDate"
+        },
+        "maturity_date": {
+          "$ref": "#/definitions/dateDate"
+        },
+        "issue_amount": {
+          "type": "number",
+          "format": "float"
+        },
+        "coupon": {
+          "type": "number",
+          "format": "float"
+        },
+        "wac": {
+          "type": "number",
+          "format": "float"
+        },
+        "wala": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "poolPoolDistributions": {
+      "type": "object",
+      "properties": {
+        "CUSIP": {
+          "type": "string"
+        },
+        "originations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/poolAllocation"
+          }
+        }
+      }
+    },
+    "poolPoolGeo": {
+      "type": "object",
+      "properties": {
+        "CUSIP": {
+          "type": "string"
+        },
+        "states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/poolAllocation"
+          }
+        }
+      },
+      "title": "Geographical Distribution"
+    },
+    "poolPoolQuartiles": {
+      "type": "object",
+      "properties": {
+        "CUSIP": {
+          "type": "string"
+        },
+        "credit_score": {
+          "$ref": "#/definitions/poolQuartile"
+        },
+        "OLTV": {
+          "$ref": "#/definitions/poolQuartile"
+        },
+        "OLS": {
+          "$ref": "#/definitions/poolQuartile"
+        },
+        "age": {
+          "$ref": "#/definitions/poolQuartile"
+        }
+      }
+    },
+    "poolPoolServicers": {
+      "type": "object",
+      "properties": {
+        "CUSIP": {
+          "type": "string"
+        },
+        "servicers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/poolAllocation"
+          }
+        }
+      },
+      "title": "Servicer Distribution"
+    },
+    "poolPoolSummary": {
+      "type": "object",
+      "properties": {
+        "CUSIP": {
+          "type": "string"
+        },
+        "purpose": {
+          "$ref": "#/definitions/poolLoanPurpose"
+        }
+      }
+    },
+    "poolQuartile": {
+      "type": "object",
+      "properties": {
+        "minimum": {
+          "type": "number",
+          "format": "float"
+        },
+        "first": {
+          "type": "number",
+          "format": "float"
+        },
+        "second": {
+          "type": "number",
+          "format": "float"
+        },
+        "third": {
+          "type": "number",
+          "format": "float"
+        },
+        "maximum": {
+          "type": "number",
+          "format": "float"
+        },
+        "average": {
+          "type": "number",
+          "format": "float"
+        }
+      },
+      "title": "Quartile"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "runtimeStreamError": {
+      "type": "object",
+      "properties": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "http_status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
